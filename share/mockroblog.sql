@@ -49,19 +49,19 @@ INSERT INTO posts(user_id, text)
 
 INSERT INTO posts(user_id, timestamp, text)
     VALUES(
-        1, DATETIME(CURRENT_TIMESTAMP, '+1 minute'),
+        1, DATETIME(CURRENT_TIMESTAMP, '+5 minutes'),
         'FYI: https://www.levels.fyi/still-hiring/'
     );
 
 INSERT INTO posts(user_id, timestamp, text)
     VALUES(
-        1, DATETIME(CURRENT_TIMESTAMP, '+2 minutes'),
+        1, DATETIME(CURRENT_TIMESTAMP, '+3 minutes'),
         'Yes, the header file ends in .h. C++ is for masochists.'
     );
 
 INSERT INTO posts(user_id, timestamp, text)
     VALUES(
-        2, DATETIME(CURRENT_TIMESTAMP, '+3 minutes'),
+        2, DATETIME(CURRENT_TIMESTAMP, '+2 minutes'),
         'If academia were a video game, then a 2.5 hour administrative meeting that votes to extend time 15 minutes is a fatality. FINISH HIM'
     );
 
@@ -73,7 +73,7 @@ INSERT INTO posts(user_id, timestamp, text)
 
 INSERT INTO posts(user_id, timestamp, text)
     VALUES(
-        3, DATETIME(CURRENT_TIMESTAMP, '+5 minutes'),
+        3, DATETIME(CURRENT_TIMESTAMP, '+1 minute'),
         '#cpsc315 #engr190w NeurIPS is $25 for students and $100 for non-students this year! https://medium.com/@NeurIPSConf/neurips-registration-opens-soon-67111581de99'
     );
 
