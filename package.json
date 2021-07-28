@@ -1,0 +1,33 @@
+{
+  "name": "cpsc349-project4",
+  "description": "CPSC 349 - Summer 2021 - Project 4",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "npx standard",
+    "start": "npx npm-run-all --parallel tailwind browsersync",
+    "tailwind": "npx tailwindcss --input src/tailwind.css --output docs/styles/tailwind.css --watch",
+    "browsersync": "npx browser-sync start --server docs/ --files \"docs/**/*\""
+  },
+  "standard": {
+    "ignore": [
+      "tailwind.config.js"
+    ],
+    "env": {
+        "browser": true
+    }
+  },
+  "author": "Kenytt Avery",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProfAvery/cpsc349-project4.git"
+  },
+  "keywords": [],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "browser-sync": "^2.27.5",
+    "npm-run-all": "^4.1.5",
+    "standard": "^16.0.3",
+    "tailwindcss": "^2.2.7"
+  }
+}

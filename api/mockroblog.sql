@@ -1,11 +1,13 @@
 PRAGMA foreign_keys=ON;
 
+
 CREATE TABLE IF NOT EXISTS users (
     id        INTEGER PRIMARY KEY,
     username  TEXT NOT NULL UNIQUE,
     email     TEXT NOT NULL UNIQUE,
     password  TEXT NOT NULL
 );
+
 INSERT INTO users
     VALUES(1, 'ProfAvery', 'kavery@fullerton.edu', 'password');
 INSERT INTO users
@@ -23,6 +25,7 @@ CREATE TABLE IF NOT EXISTS followers (
     FOREIGN KEY(following_id) REFERENCES users(id),
     UNIQUE(follower_id, following_id)
 );
+
 INSERT INTO followers(follower_id, following_id) VALUES(1, 2);
 INSERT INTO followers(follower_id, following_id) VALUES(1, 3);
 INSERT INTO followers(follower_id, following_id) VALUES(2, 1);
@@ -41,41 +44,64 @@ CREATE TABLE IF NOT EXISTS posts (
 CREATE INDEX IF NOT EXISTS post_user_id_fk_idx ON posts(user_id);
 CREATE INDEX IF NOT EXISTS post_timestamp_idx ON posts(timestamp);
 
-INSERT INTO posts(user_id, text)
+INSERT INTO posts(id, user_id, text)
     VALUES(
-        1,
+        1, 1,
         'Meanwhile, at the R1 institution down the street... https://uci.edu/coronavirus/messages/200710-sanitizer-recall.php'
     );
 
-INSERT INTO posts(user_id, timestamp, text)
+INSERT INTO posts(id, user_id, timestamp, text)
     VALUES(
-        1, DATETIME(CURRENT_TIMESTAMP, '+5 minutes'),
+        2, 1, DATETIME(CURRENT_TIMESTAMP, '+5 minutes'),
         'FYI: https://www.levels.fyi/still-hiring/'
     );
 
-INSERT INTO posts(user_id, timestamp, text)
+INSERT INTO posts(id, user_id, timestamp, text)
     VALUES(
-        1, DATETIME(CURRENT_TIMESTAMP, '+3 minutes'),
+        3, 1, DATETIME(CURRENT_TIMESTAMP, '+3 minutes'),
         'Yes, the header file ends in .h. C++ is for masochists.'
     );
 
-INSERT INTO posts(user_id, timestamp, text)
+INSERT INTO posts(id, user_id, timestamp, text)
     VALUES(
-        2, DATETIME(CURRENT_TIMESTAMP, '+2 minutes'),
+        4, 2, DATETIME(CURRENT_TIMESTAMP, '+2 minutes'),
         'If academia were a video game, then a 2.5 hour administrative meeting that votes to extend time 15 minutes is a fatality. FINISH HIM'
     );
 
-INSERT INTO posts(user_id, timestamp, text)
+INSERT INTO posts(id, user_id, timestamp, text)
     VALUES(
-        2, DATETIME(CURRENT_TIMESTAMP, '+4 minutes'),
+        5, 2, DATETIME(CURRENT_TIMESTAMP, '+4 minutes'),
         'I keep seeing video from before COVID, of people not needing to mask or distance, and doing something like waiting in line at Burger King. YOU''RE WASTING IT!'
     );
 
-INSERT INTO posts(user_id, timestamp, text)
+INSERT INTO posts(id, user_id, timestamp, text)
     VALUES(
-        3, DATETIME(CURRENT_TIMESTAMP, '+1 minute'),
+        6, 3, DATETIME(CURRENT_TIMESTAMP, '+1 minute'),
         '#cpsc315 #engr190w NeurIPS is $25 for students and $100 for non-students this year! https://medium.com/@NeurIPSConf/neurips-registration-opens-soon-67111581de99'
     );
+
+
+CREATE TABLE IF NOT EXISTS likes (
+    id          INTEGER PRIMARY KEY,
+    user_id     INTEGER NOT NULL,
+    post_id     INTEGER NOT NULL,
+    timestamp   INTEGER DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY(user_id) REFERENCES users(id),
+    FOREIGN KEY(post_id) REFERENCES posts(id),
+    UNIQUE(user_id, post_id)
+);
+CREATE INDEX IF NOT EXISTS likes_user_id_fk_idx
+    ON likes(user_id);
+CREATE INDEX IF NOT EXISTS likes_post_id_fk_idx
+    ON likes(post_id);
+
+INSERT INTO likes(user_id, post_id) VALUES(1, 4 );
+INSERT INTO likes(user_id, post_id) VALUES(1, 6);
+INSERT INTO likes(user_id, post_id) VALUES(2, 3);
+INSERT INTO likes(user_id, post_id) VALUES(2, 6);
+INSERT INTO likes(user_id, post_id) VALUES(3, 2);
+
 
 CREATE TABLE IF NOT EXISTS direct_messages (
     id              INTEGER PRIMARY KEY,
@@ -108,6 +134,7 @@ INSERT INTO
         'Thanks! Going to share this with Dr. Ryu.'
     );
 
+
 CREATE TABLE IF NOT EXISTS polls (
     id          INTEGER PRIMARY KEY,
     user_id     INTEGER NOT NULL,
@@ -119,6 +146,7 @@ CREATE INDEX IF NOT EXISTS polls_user_id_fk_idx ON polls(user_id);
 
 INSERT INTO polls(id, user_id, question)
     VALUES(1, 1, 'What''s is your favorite term of the academic year?');
+
 
 CREATE TABLE IF NOT EXISTS poll_options (
     id      INTEGER PRIMARY KEY,
@@ -134,6 +162,7 @@ INSERT INTO poll_options(poll_id, id, text) VALUES(1, 1, 'Fall Semester');
 INSERT INTO poll_options(poll_id, id, text) VALUES(1, 2, 'Spring Semester');
 INSERT INTO poll_options(poll_id, id, text) VALUES(1, 3, 'Summer Session A');
 INSERT INTO poll_options(poll_id, id, text) VALUES(1, 4, 'Summer Session B');
+
 
 CREATE TABLE IF NOT EXISTS poll_votes (
     id          INTEGER PRIMARY KEY,
@@ -152,6 +181,7 @@ CREATE INDEX IF NOT EXISTS poll_votes_user_id_fk_idx
     ON poll_votes(user_id);
 CREATE INDEX IF NOT EXISTS poll_votes_option_id_fk_idx
     ON poll_votes(option_id);
+
 
 INSERT INTO poll_votes(poll_id, user_id, option_id) VALUES(1, 1, 4);
 INSERT INTO poll_votes(poll_id, user_id, option_id) VALUES(1, 2, 1);

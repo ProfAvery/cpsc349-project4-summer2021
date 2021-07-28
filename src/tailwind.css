@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Tailwind classes go here */
+@layer components {
+
+    h1 {
+        @apply text-2xl py-4
+    }
+
+    h2 {
+        @apply text-xl py-2
+    }
+
+    .button {
+        @apply text-white bg-indigo-500 py-1 px-6 hover:bg-indigo-600 rounded
+    }
+
+}
