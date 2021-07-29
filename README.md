@@ -71,7 +71,7 @@ Note that `6` is the `id` of the entry in the `followers` table, not the `user_i
 | Operation                  | HTTP Method | URL                            |
 |----------------------------|-------------|---------------------------------------------------------------------|
 | Retrieve a user's timeline | GET         | `http://localhost:5000/followers/6`                                 |
-| Search posts for a keyword | GET         | `http://localhost:5000/posts/?text=%%covid%%`                       |
+| Search posts for a hashtag | GET         | `http://localhost:5000/posts/?text=%%%%23cpsc315%%`                    |
 
 ## Other features
 
