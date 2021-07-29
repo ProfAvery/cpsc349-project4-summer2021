@@ -7,17 +7,28 @@
 
 ## Getting started
 
-Use the following commands to get up and running:
+Use the following commands to get up and running.
+
+In one terminal window:
 
 ```shell-session
-$ sudo apt update                               # updates package index
-$ sudo apt install --yes ruby-foreman sqlite3   # used to manage Procfile and database
-$ python3 -m pip install sandman2               # used to expose API
-$ cd api
-$ make                                          # creates database
-$ foreman start                                 # starts back-end
-$ cd ..
-$ npm start                                     # starts front-end
+$ sudo apt update                                               # updates package index
+$ sudo apt install --yes ruby-foreman sqlite3                   # manage Procfile and database
+$ sudo apt install --yes python3-pip python3-flask-cors         # required Python packages
+$ python3 -m pip install sandman2                               # used to expose API
+$ export PATH="$HOME/.local/bin:$PATH"
+$ git clone https://github.com/ProfAvery/cpsc349-project4
+$ cd cpsc349-project4/api
+$ make                                                          # creates database
+$ foreman start                                                 # starts back-end
+```
+
+In another terminal window:
+
+```shell-session
+$ cd cpsc349-project4/   
+$ npm install
+$ npm start                                                     # starts front-end
 ```
 
 You can examine the data using the `sandman2`
@@ -27,10 +38,10 @@ You can examine the data using the `sandman2`
 
 See the following references for more information:
 
+* [foreman](https://ddollar.github.io/foreman/)
+* [sqlite3](https://sqlite.org/cli.html)
 * [sandman2](https://github.com/jeffknupp/sandman2)
 * [make](https://en.wikipedia.org/wiki/Makefile)
-* [sqlite3](https://sqlite.org/cli.html)
-* [foreman](https://ddollar.github.io/foreman/)
 
 
 # Sample API calls

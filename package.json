@@ -13,7 +13,7 @@
       "tailwind.config.js"
     ],
     "env": {
-        "browser": true
+      "browser": true
     }
   },
   "author": "Kenytt Avery",
