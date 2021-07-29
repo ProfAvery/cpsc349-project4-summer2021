@@ -8,7 +8,7 @@ function search (term = '') {
   fetch(`http://localhost:5000/posts/?text=${query}`)
     .then(response => response.json())
     .then(data => {
-      resultValue.innerText = JSON.stringify(data.resources, null, 2)
+      resultValue.textContent = JSON.stringify(data.resources, null, 2)
       results.hidden = false
     })
 }

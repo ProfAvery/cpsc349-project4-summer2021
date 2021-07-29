@@ -11,7 +11,7 @@ Use the following commands to get up and running:
 
 ```shell-session
 $ sudo apt update                               # updates package index
-$ sudo apt install --yes ruby-foreman sqlite2   # used to Procfile and database
+$ sudo apt install --yes ruby-foreman sqlite3   # used to manage Procfile and database
 $ python3 -m pip install sandman2               # used to expose API
 $ cd api
 $ make                                          # creates database
@@ -35,9 +35,9 @@ See the following references for more information:
 
 # Sample API calls
 
-To create a user:
-
-POST `http://localhost:5000/users/`
+| Operation     | HTTP Method | URL                            |
+|---------------|-------------|--------------------------------|
+| Create a user | POST        | `http://localhost:5000/users/` |
 
 ```json
 {
@@ -48,14 +48,10 @@ POST `http://localhost:5000/users/`
 ```
 
 
-To check a user's password:
-
-`http://localhost:5000/users/?username=ProfAvery&password=password`
-
-
-To start following a user:
-
-POST to `http://localhost:5000/followers/`
+| Operation               | HTTP Method | URL                            |
+|-------------------------|-------------|---------------------------------------------------------------------|
+| Check a user's password | GET         | `http://localhost:5000/users/?username=ProfAvery&password=password` |
+| Start following a user  | POST        | `http://localhost:5000/followers/`                                   |
 
 ```json
 {
@@ -65,20 +61,29 @@ POST to `http://localhost:5000/followers/`
 ```
 
 
-To stop following a user:
+| Operation              | HTTP Method | URL                            |
+|------------------------|-------------|---------------------------------------------------------------------|
+| Stop following a user  | DELETE      | `http://localhost:5000/followers/6`                                 |
 
-DELETE `http://localhost:5000/followers/6`
-
-*(Note that `6` is the `id` of the entry in the `followers` table, not the
-`user_id` of either user.)*
-
-
-To retrieve a user's timeline:
-
-`http://localhost:5000/posts/?user_id=1&sort=-timestamp`
+Note that `6` is the `id` of the entry in the `followers` table, not the `user_id` of either user.
 
 
-Search posts for a keyword:
+| Operation                  | HTTP Method | URL                            |
+|----------------------------|-------------|---------------------------------------------------------------------|
+| Retrieve a user's timeline | GET         | `http://localhost:5000/followers/6`                                 |
+| Search posts for a keyword | GET         | `http://localhost:5000/posts/?text=%%covid%%`                       |
 
-`http://localhost:5000/posts/?text=%%covid%%`
+## Other features
 
+This version of the [Mockroblog database](./api/mockroblog.sql) includes
+additional data not included in
+[Project 3](https://github.com/ProfAvery/cpsc349-project3):
+
+ * Likes
+ * Direct Messages
+ * Polls
+
+The REST API exposed by `sandman2` also allows additional types of queries
+against existing data. See
+[the documentation](https://pythonhosted.org/sandman2/interacting.html) for
+details.
