@@ -1,23 +1,27 @@
 const searchForm = document.querySelector('#search')
 const keyword = document.querySelector('#keyword')
-const results = document.querySelector('#results')
-const resultValue = document.querySelector('#result-value')
+
+const resultDiv = document.querySelector('#results')
+const result = document.querySelector('#result-value')
 
 function search (term = '') {
   const query = encodeURIComponent(`%%${term}%%`)
   fetch(`http://localhost:5000/posts/?text=${query}`)
     .then(response => response.json())
     .then(data => {
-      resultValue.textContent = JSON.stringify(data.resources, null, 2)
-      results.hidden = false
+      if (!term) {
+        resultDiv.hidden = true
+      } else {
+        resultDiv.hidden = false
+        result.textContent = JSON.stringify(data.resources, null, 2)
+      }
     })
 }
 
-window.addEventListener('load', (event) => {
-  search()
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault()
 })
 
-searchForm.addEventListener('submit', (event) => {
+keyword.addEventListener('input', (event) => {
   search(keyword.value)
-  event.preventDefault()
 })
