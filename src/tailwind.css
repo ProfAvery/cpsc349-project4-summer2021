@@ -13,8 +13,8 @@
         @apply text-xl py-2
     }
 
-    .button {
-        @apply text-white bg-indigo-500 py-1 px-6 hover:bg-indigo-600 rounded
+    footer {
+        @apply bg-gray-200
     }
 
 }

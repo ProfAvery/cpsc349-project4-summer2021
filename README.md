@@ -1,7 +1,7 @@
 # Mockroblog - Mock APIs for Microblogging
 
 **Q.** What's the minimum amount of code needed to mock up a miniature
-       clone of Twitter?
+       Twitter back-end?
 
 **A.** How comfortable are you with SQL?
 
@@ -26,7 +26,7 @@ $ foreman start                                                 # starts back-en
 In another terminal window:
 
 ```shell-session
-$ cd cpsc349-project4/   
+$ cd cpsc349-project4/
 $ npm install
 $ npm start                                                     # starts front-end
 ```
@@ -42,6 +42,7 @@ See the following references for more information:
 * [sqlite3](https://sqlite.org/cli.html)
 * [sandman2](https://github.com/jeffknupp/sandman2)
 * [make](https://en.wikipedia.org/wiki/Makefile)
+* [webpack](https://webpack.js.org/)
 
 
 # Sample API calls
@@ -79,10 +80,20 @@ See the following references for more information:
 Note that `6` is the `id` of the entry in the `followers` table, not the `user_id` of either user.
 
 
-| Operation                  | HTTP Method | URL                            |
-|----------------------------|-------------|---------------------------------------------------------------------|
-| Retrieve a user's timeline | GET         | `http://localhost:5000/followers/6`                                 |
-| Search posts for a hashtag | GET         | `http://localhost:5000/posts/?text=%%%%23cpsc315%%`                    |
+| Operation                    | HTTP Method | URL                            |
+|------------------------------|-------------|---------------------------------------------------------------------|
+| Retrieve a user's timeline   | GET         | `http://localhost:5000/followers/6`                                 |
+| Retrieve the public timeline | GET         | `http://localhost:5000/followers/6`                                 |
+| Search posts for a hashtag   | GET         | `http://localhost:5000/posts/?text=%%%%23cpsc315%%`                 |
+| Post a new message           | POST        | `http://localhost:5000/posts/`                                      |
+
+```json
+{
+    "user_id": 4,
+    "text": "First poast!"
+}
+```
+
 
 ## Other features
 

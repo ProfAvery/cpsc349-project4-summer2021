@@ -1,3 +1,9 @@
+import './tailwind.css'
+import './magnifying-glass.png'
+
+import * as mockroblog from './mockroblog.js'
+window.mockroblog = mockroblog
+
 const searchForm = document.querySelector('#search')
 const keyword = document.querySelector('#keyword')
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>API Test</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body class="bg-gray-50 flex flex-col min-h-screen">
+        <div class="container flex-grow px-8">
+            <h1>API Test</h1>
+
+            <form id="search">
+                <div class="relative">
+                    <span class="absolute inset-y-0 flex items-center pl-2">
+                        <img src="./magnifying-glass.png" class="w-5 h-5">
+                    </span>
+                    <input type="search" id="keyword" name="q" class="pl-10 pr-1 py-1" placeholder="keyword..." autofocus>
+                </div>
+            </form>
+
+            <div id="results" class="py-2" hidden>
+                <h2>Search Results</h2>
+                <pre id="result-value">None</pre>
+            </div>
+        </div>
+
+        <footer class="text-xs flow-root">
+            <div class="pl-2 float-left">
+                Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a>
+                from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+            </div>
+            <div class="float-right pr-2">
+                Search input with integrated icon by
+                <a href="https://tailwindcomponents.com/u/cricksu" title="Criksu">Cricksu</a>
+                from
+                <a href="https://tailwindcomponents.com/component/search-input-with-integrated-icon-and-button" title="TailwindComponents">tailwindcomponents.com</a>
+            </div>
+        </footer>
+    </body>
+</html>
