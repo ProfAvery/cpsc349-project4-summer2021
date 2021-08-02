@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, 'docs'),
     clean: true
   },
   plugins: [
@@ -25,12 +24,19 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: 'html-loader'
+      },
+      {
+        enforce: 'pre',
+        test: /\.js$/i,
+        loader: 'standard-loader',
+        options: {
+          env: {
+            browser: true
+          }
+        }
       }
     ]
   },
   mode: 'development',
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './docs'
-  }
 }
