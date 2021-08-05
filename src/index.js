@@ -12,7 +12,7 @@ const result = document.querySelector('#result-value')
 
 async function search (term = '') {
   const query = encodeURIComponent(`%%${term}%%`)
-  const response = await fetch(`http://localhost:5000/posts/?text=${query}`)
+  const response = await fetch(`http://localhost:5000/posts/?text=${query}&sort=-timestamp`)
   const data = await response.json()
 
   result.textContent = JSON.stringify(data.resources, null, 2)
